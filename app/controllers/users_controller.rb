@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    authorize @users
   end
 
   def edit
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
   end
-  
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)

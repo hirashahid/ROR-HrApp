@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   root 'home#index'
-
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   resources :employees
   resources :documents
+  resources :users
 
   #public pages routes
   get 'about', to: 'pages#about_us'

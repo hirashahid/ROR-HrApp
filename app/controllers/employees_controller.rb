@@ -14,6 +14,7 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
     if @employee.save
+      current_user.add_role :registrar, @employee
       redirect_to employees_path, notice: 'Employee was successfully created.'
     else
       render :new
@@ -25,6 +26,7 @@ class EmployeesController < ApplicationController
 
   def update
     if @employee.update(employee_params)
+      current_user.add_role :editor, @employee
       redirect_to employees_path, notice: 'Employee has been successfully updated.'
     else
       render :edit
@@ -39,7 +41,7 @@ class EmployeesController < ApplicationController
 
   private
   def employee_params
-    params.require(:employee).permit(:first_name, :middle_name,:last_name,:personal_email,:city,:state,:country,:pincode,:address)
+    params.require(:employee).permit(:first_name,:last_name,:personal_email,:city,:state,:country,:pincode,:address)
   end
 
   def set_employee

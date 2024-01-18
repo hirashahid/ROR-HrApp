@@ -1,5 +1,10 @@
 class Employee < ApplicationRecord
 
+  resourcify
+
+  has_many :users, through: :roles, class_name: 'User', source: :users
+  has_many :registrar, -> { where(roles: { name: :registrar }) }, through: :roles, class_name: 'User', source: :users
+
   has_many :documents
 
   validates :first_name, :last_name, presence: true

@@ -69,3 +69,4 @@ end
 gem 'devise'
 gem 'pundit'
 gem 'rolify'
+gem 'byebug', '~> 11.1', '>= 11.1.3'

@@ -1,6 +1,5 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    Rails.logger.debug "User roles: #{@user.roles}" if @user
     @user.has_role? :admin
   end
 
